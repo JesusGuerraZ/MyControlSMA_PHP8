@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\oservicio;
+use App\Models\oatencion;
 use Illuminate\Http\Request;
 use App\Models\beneficiarios;
 use App\Models\contratos;
 use Illuminate\Support\Facades\DB;
+
 
 class OservicioController extends Controller
 {
@@ -46,19 +48,23 @@ class OservicioController extends Controller
         $nomBeneficiario = DB::table('beneficiarios')->get();
         $prestador_nom = contratos::pluck('prest_contrato', 'prest_contrato')->all();
         //obtener el ultimo id para tomarlo como el · de registro para la orden de servicio
-        $numReg_oservicio = DB::table('oservicios')->select('id')->get();
-        $numReg_oservicioLast = $numReg_oservicio->last();
-        $nr = $numReg_oservicio;
+        $id = oservicio::pluck('id', 'id')->last();
+        $id_posterior = $id + 1;
+        $nr = array($id_posterior);
+        $num = oatencion::pluck('id_oservicio', 'id_oservicio')->all();
+        $num_oservicio =  DB::table('oservicios')->select('num_oservicio', 'id_beneficiario')->where('num_oservicio', $num)->pluck('id_beneficiario', 'num_oservicio')->all();
 
-        return view('oservicios.crear', compact('beneficiario_id'), compact('prestador_nom', 'fullName_beneficiario', 'nomBeneficiario', 'nr'));
+           // dd($num_oservicio);
+        return view('oservicios.crear', compact('beneficiario_id', 'prestador_nom', 'fullName_beneficiario', 'nomBeneficiario', 'nr'));
     }
+
     public function getState(Request $request)
     {
         $cid = $request->post('cid');
         $state = DB::table('beneficiarios')->where('id', $cid)->orderBy('id', 'asc')->get();
-        // $html = '<option value="" disabled selected>Documento</option>';
+        /* $html = '<label><input type="checkbox" /></label>'; */
         foreach ($state as $list) {
-            $html = '<option value="' . $list->ced_beneficiario . '">' . $list->ced_beneficiario . '</option>';
+            $html = '<option value="' . $list->ced_beneficiario . '"/>' . $list->ced_beneficiario . '</option>';
         }
         echo $html;
     }
@@ -94,22 +100,24 @@ class OservicioController extends Controller
             'nom_beneficiario' => 'required',
             'ident_prestador' => 'required',
             'pdf_oservicio' => 'required',
+            'val_oservicio' => 'required',
 
         ]);
 
-        $numReg_oservicio = DB::table('oservicios')->select('id')->get();
-        $numReg_oservicioLast = $numReg_oservicio->last();
-        $h = oservicio::pluck('id')->all()->last();
-        $nr = $numReg_oservicio;
+        //$numReg_oservicio = DB::table('oservicios')->select('id')->get();
+        //$numReg_oservicioLast = $numReg_oservicio->last();
+
+        //$h = oservicio::pluck('id')->all()->last();
+        //$nr = $numReg_oservicio;
 
         if ($request->hasFile('pdf_oservicio') &&  $extension == 'pdf') {
-            dd($h);
+
             request()->file('pdf_oservicio')->storeAs('public/PDF_oservicio', $nom_pdf);
             //dd($input['pdf_oservicio']);
             //dd($orden_servicio);
         } else {
                 //dd('No es un PDF');
-
+                //dd($beneficiario_nom);
             ;
         }
         //request()->file('pdf_oservicio')->store('public');
@@ -168,6 +176,7 @@ class OservicioController extends Controller
             'ident_prestador' => 'required',
             'fec_cita_oservicio' => 'required',
             'pdf_oservicio' => 'required',
+            'val_oservicio' => 'required',
         ]);
 
 

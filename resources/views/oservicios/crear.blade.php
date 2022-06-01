@@ -28,16 +28,16 @@
 
                             <form action="{{ route('oservicios.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                {{-- <div class="row">
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
-                                        <div class="form-group"><br>
-                                            <label for="numreg_oservicio"><h6>Número de registro</h6></label><br>
-                                            {!! Form::select('numreg_oservicio', $nr, [], ['class' => 'form-control', 'id' => 'hola', 'disabled']) !!}
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 <div class="row">
                                     <div class="col-xs-2 col-sm-2 col-md-6">
+
+                                        <div class="form-group"><br>
+                                            <label for="numreg_oservicio">
+                                                Número de registro
+                                            </label><br>
+                                            {!! Form::select('numreg_oservicio', $nr, [], ['class' => 'form-control', 'disabled']) !!}
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="fec_reg_oservicio">Fecha registro</label>
                                             <?php $fcha = date('Y-m-d'); ?>
@@ -74,11 +74,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-2 col-sm-2 col-md-6">
-                                        <div class="form-group">
+                                    <div class="col-xs-2 col-sm-2 col-md-4">
+                                        <div class="form-group"><br>
                                             <label for="">Prestador</label>
                                             {!! Form::select('ident_prestador', $prestador_nom, [], ['class' => 'form-control']) !!}
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="val_oservicio">Valor de servicio</label>
+                                            <input type="number" name="val_oservicio" class="form-control">
+                                        </div>
+
                                         <div class="form-group" style="display: none;">
                                             <label for="">Estado</label>
                                             <select name="est_oservicio" id="est_oservicio" for="est_oservicio"

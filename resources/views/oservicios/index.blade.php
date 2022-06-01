@@ -28,6 +28,7 @@
                                         <th style="display: none;">Fec de Cita</th>
                                         <th style="color:#fff;">PDF</th>
                                         <th style="color:#fff;">Estado</th>
+                                        <th style="color:#fff;">Valor</th>
                                         <th style="color:#fff;">Acciones</th>
                                     </thead>
                                     <tbody>
@@ -42,6 +43,7 @@
                                                 <td><a href="{{ asset('/storage/pdf_oservicio/' . $oservicios->pdf_oservicio) }}"
                                                         target="_blank">{{ $oservicios->pdf_oservicio }}</a></td>
                                                 <td>{{ $oservicios->est_oservicio }}</td>
+                                                <td>{{ $oservicios->val_oservicio }}</td>
                                                 <td>
                                                     <form action="{{ route('oservicios.destroy', $oservicios->id) }}"
                                                         method="POST">

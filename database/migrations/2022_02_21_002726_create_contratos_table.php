@@ -22,6 +22,7 @@ class CreateContratosTable extends Migration
             $table->integer('ident_contrato');
             $table->string('tipo_contrato', 11);
             $table->string('servi_contrato', 11);
+            $table->string('natu_contrato', 11);
             $table->date('fec_susc_contrato');
             $table->date('fec_ini_contrato');
             $table->date('fec_ter_contrato');

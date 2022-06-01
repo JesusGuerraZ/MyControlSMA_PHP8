@@ -29,7 +29,8 @@ use App\Http\Controllers\ValidadorController;
 */
 
 Route::post('/getState', [OservicioController::class, 'getState']);
-Route::post('/getCity', [OservicioController::class, 'getCity']);
+Route::post('/getState2', [FacturadorController::class, 'getState2']);
+/* Route::post('/getCity', [OservicioController::class, 'getCity']); */
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -61,5 +62,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('revjuridica', RjuridicaController::class);
 });
 Route::get('oservicio/{num_oservicio}/download', [OservicioController::class, 'download'])->name('oservicioPDF.download');
-
+Route::get('public/PDF_oservicio/{num_oservicio}', [AuditorController::class, 'aprobar'])->name('oservicioPDF.aprobado');
 Auth::routes();

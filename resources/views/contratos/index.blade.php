@@ -39,6 +39,7 @@
                                         <th style="color:#fff;">Valor Actual</th>
                                         <th style="color:#fff;">Obligacion</th>
                                         <th style="color:#fff;">Estado</th>
+                                        <th style="color:#fff;">Naturaleza del contrato</th>
                                         <th style="color:#fff;">acciones</th>
                                     </thead>
                                     <tbody>
@@ -63,6 +64,7 @@
                                                 <td>{{ $contratos->val_act_contrato }}</td>
                                                 <td>{{ $contratos->obli_contrato }}</td>
                                                 <td>{{ $contratos->est_contrato }}</td>
+                                                <td>{{ $contratos->natu_contrato }}</td>
                                                 <td>
                                                     <form action="{{ route('contratos.destroy', $contratos->id) }}"
                                                         method="POST">

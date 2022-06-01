@@ -215,7 +215,7 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #858796;
+  color: hwb(233 52% 41% / 0);
   text-align: left;
   caption-side: bottom;
 }

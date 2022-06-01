@@ -57,7 +57,8 @@
                                             <label for="tipo_contrato">Tipo de contratacion</label>
                                             <select name="tipo_contrato" id="" class="form-control">
                                                 <option value="Contratacion directa">Contratacion directa</option>
-                                                <option value="Selección Abreviada de Menor Cuantía">Selección Abreviada de Menor Cuantía</option>
+                                                <option value="Selección Abreviada de Menor Cuantía">Selección Abreviada de
+                                                    Menor Cuantía</option>
                                                 <option value="Mínima Cuantía">Mínima Cuantía</option>
                                             </select>
                                         </div>
@@ -118,7 +119,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="val_contrato">Valor inicial </label>
-                                            <input type="number" id="ini_val" name="val_contrato" class="form-control" oninput="calcular()">
+                                            <input type="number" id="ini_val" name="val_contrato" class="form-control"
+                                                oninput="calcular()">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -136,8 +138,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-4">
                                         <div class="form-group">
                                             <label for="mod_contrato">Adición</label>
-                                            <select type="text" class="form-control" name="mod_contrato"
-                                                id="mod_contrato" onchange="boolean_validation()">
+                                            <select type="text" class="form-control" name="mod_contrato" id="mod_contrato"
+                                                onchange="boolean_validation()">
                                                 <option value="No">No</option>
                                                 <option value="Sí">Sí</option>
                                             </select>
@@ -146,19 +148,31 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="val_mod_contrato">Valor adición</label>
-                                            <input type="number" id="mod_val" name="val_mod_contrato" class="form-control" oninput="calcular()" disabled>
+                                            <input type="number" id="mod_val" name="val_mod_contrato" class="form-control"
+                                                oninput="calcular()" disabled>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="val_act_contrato">Valor actual</label>
-                                            <input type="number" id="act_val" name="val_act_contrato" class="form-control">
+                                            <input type="number" id="act_val" name="val_act_contrato"
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="obli_contrato">Obligaciones</label>
                                             <input type="text" name="obli_contrato" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                        <div class="form-group">
+                                            <label for="natu_contrato">Naturaleza del prestador</label>
+                                            <select type="text" class="form-control" name="natu_contrato"
+                                                id="natu_contrato">
+                                                <option value="Persona natural">Persona natural</option>
+                                                <option value="Juridica">Juridica</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-2">
@@ -173,7 +187,8 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <input type="button" class="btn btn-secondary" value="Cancelar" onClick="history.go(-1);">
+                                        <input type="button" class="btn btn-secondary" value="Cancelar"
+                                            onClick="history.go(-1);">
                                     </div>
                                 </div>
                             </form>

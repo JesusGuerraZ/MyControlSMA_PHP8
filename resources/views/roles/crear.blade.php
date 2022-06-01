@@ -38,22 +38,25 @@
                                     <div class="form-group">
                                         <label for="">Permisos para este Rol:</label>
                                         <br />
+                                        <div class="scroll">
                                         @foreach ($permission as $value)
                                             <label>{{ Form::checkbox('permission[]', $value->id, false, ['class' => 'name']) }}
                                                 {{ $value->name }}</label>
                                             <br />
                                         @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 {!! Form::close() !!}
-                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                                <button type="reset" class="btn btn-warning">Limpiar</button>
+                                <input type="button" class="btn btn-danger" value="Cancelar" onClick="history.go(-1);">
                             </div><br>
-                            <div class="col-xs-3 col-sm-3 col-md-2">
+                            {{-- <div class="col-xs-3 col-sm-3 col-md-2">
                                 <input type="button" class="btn btn-secondary" value="Cancelar" onClick="history.go(-1);">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

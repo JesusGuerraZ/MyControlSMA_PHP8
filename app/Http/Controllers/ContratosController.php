@@ -61,6 +61,7 @@ class ContratosController extends Controller
             'mod_contrato' => 'required',
             'val_act_contrato' => 'required',
             'est_contrato' => 'required',
+            'natu_contrato' => 'required',
             //'contenido' => 'required',
         ]);
 
@@ -117,6 +118,7 @@ class ContratosController extends Controller
             'mod_contrato' => 'required',
             'val_act_contrato' => 'required',
             'est_contrato' => 'required',
+            'natu_contrato' => 'required',
         ]);
 
         $contrato->update($request->all());

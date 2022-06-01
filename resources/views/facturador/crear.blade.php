@@ -25,26 +25,50 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('facturador.store') }}" method="POST" id="formEnviar" enctype="multipart/form-data">
+                            <form action="{{ route('facturador.store') }}" method="POST" id="formEnviar"
+                                enctype="multipart/form-data">
                                 @csrf
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-2 col-md-6">
+                                        <div class="form-group">
+                                            <label for="aprobada_facturacion">Prestador de servicio-Filtro</label>
+                                            {{-- {!! Form::select('ident_prestador', $prestador_nom, [], ['class' => 'form-control', 'id' => 'country2']) !!} --}}
+                                            <select id="country2" class="form-control" name="nom_beneficiario">
+                                                @foreach ($prestador_nom as $list)
+                                                    <option value="{{ $list->id }}">
+                                                        {{ $list->ident_prestador.' '.$list->id }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-0">
+                                        <div class="form-group">
+                                            <label for="">Numero orden de servicio</label><br>
+                                            <div class="scroll-2" id="state2">
+                                                @foreach ($numOS as $list)
+                                                    <label>{{ Form::checkbox('id_oservicio', $list->num_oservicio, false, ['class' => 'name']) }}
+                                                        {{ $list->num_oservicio }}</label>
+                                                    <br />
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-2">
                                         <div class="form-group">
-                                            <label for="">Numero orden de servicio</label>
-                                            {!! Form::select('id_oservicio', $orden_servicio, [], ['class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-4">
-                                        <div class="form-group">
                                             <label for="valor_factura">Valor de factura</label>
-                                            <input type="number" name="valor_factura" class="form-control   ">
+                                            <input type="" name="valor_factura" class="form-control"
+                                                onchange="MASK(this,this.value,'-$##,###,###,##0',1)">
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-3">
                                         <div class="form-group">
                                             <label for="fec_reg_factura">Fec.Registro Factura</label>
-                                            <?php $fcha = date("Y-m-d");?>
-                                            <input type="date" name="fec_reg_factura" class="form-control"value="<?php echo $fcha;?>">
+                                            <?php $fcha = date('Y-m-d'); ?>
+                                            <input type="date" name="fec_reg_factura" class="form-control"
+                                                value="<?php echo $fcha; ?>">
 
                                         </div>
                                     </div>
@@ -77,14 +101,17 @@
                                             <input type="file" name="pdf_facturacion" class="">
                                         </div>
                                     </div>
-                                   <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div>
-                                            <input type="checkbox" id="checkFirma" name="checkFirma" onclick="Firma()"><b> Certifico la veracidad de la información aquí cargada y que esta ha sido registrada de manera completa. </b><br> <br>
-                                       </div>
-                                   </div>
+                                            <input type="checkbox" id="checkFirma" name="checkFirma" onclick="Firma()"><b>
+                                                Certifico la veracidad de la información aquí cargada y que esta ha sido
+                                                registrada de manera completa. </b><br> <br>
+                                        </div>
+                                    </div>
 
                                     <div class="col-xs-2 col-sm-2 col-md-8">
-                                        <button type="submit" class="btn btn-primary" id="btnFirma" disabled>Guardar</button>
+                                        <button type="submit" class="btn btn-primary" id="btnFirma"
+                                            disabled>Guardar</button>
                                         <input type="button" class="btn btn-secondary" value="Cancelar"
                                             onClick="history.go(-1);">
                                     </div>

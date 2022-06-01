@@ -52,9 +52,6 @@
                                             </select>
                                         </div>
                                     </div>
-
-
-
                                     <div class="col-xs-12 col-sm-12 col-md-2">
                                         <div class="form-group">
                                             <label for="fec_apr_auditoria">Fecha de aprobación (Auditoría)</label>
@@ -84,9 +81,7 @@
 
                                     </div>
                                 </div>
-
-
-
+                                
                             </form>
 
                         </div>

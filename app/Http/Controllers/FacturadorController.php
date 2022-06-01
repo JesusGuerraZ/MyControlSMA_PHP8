@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\contratos;
 use App\Models\facturador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\oservicio;
 
 
@@ -39,10 +40,20 @@ class FacturadorController extends Controller
     {
         $consulta = oservicio::where('est_oservicio', '=', 'atendida')->get();
         $orden_servicio = $consulta->pluck('num_oservicio', 'num_oservicio')->all();
+        $numOS = oservicio::where('est_oservicio', '=', 'atendida')->get();
+        $prestador_nom = oservicio::where('est_oservicio', 'atendida')->get();
+        return view('facturador.crear', compact('orden_servicio', 'numOS', 'prestador_nom'));
+    }
 
-
-
-        return view('facturador.crear', compact('orden_servicio'));
+    public function getState2(Request $request)
+    {
+        $cid2 = $request->post('cid');
+        $state = DB::table('oservicios')->where('id', $cid2)->get();
+        /* $html = '<label><input type="checkbox" /></label>'; */
+        foreach ($state as $list) {
+            $html = '<input type="checkbox" value="' . $list->num_oservicio . '"/>  ' . $list->num_oservicio . '</br>';
+        }
+        echo $html;
     }
 
     /**
@@ -56,7 +67,8 @@ class FacturadorController extends Controller
         //relacionar campos de distintos modelos y tablas
         $input = $request->all();
 
-
+        $datoTest = $request->input('id_oservicio');
+        dd($datoTest);
         //Variables para guardar e identificar eñ pdf;
         $extension = $request->file('pdf_facturacion')->getClientOriginalExtension();
         $pdfName = $request->file('pdf_facturacion')->getClientOriginalName();
@@ -80,7 +92,6 @@ class FacturadorController extends Controller
         if ($request->hasFile('pdf_facturacion') &&  $extension == 'pdf') {
 
             request()->file('pdf_facturacion')->storeAs('public/PDF_facturacion', $nom_pdf);
-
         } else {
             dd('No es un PDF');
         }
@@ -90,6 +101,8 @@ class FacturadorController extends Controller
 
         return redirect()->route('facturador.index');
     }
+
+
 
 
     /**

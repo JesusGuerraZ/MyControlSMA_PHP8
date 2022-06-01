@@ -17,6 +17,13 @@
     <!-- Tables -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- multiselect -->
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.css"> --}}
+    {{-- <link href="css/multiselect.css" rel="stylesheet">
+    <link href="{{ asset('css/multiselect.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/dselect.css') }}"> --}}
     @yield('page_css')
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
@@ -72,6 +79,12 @@
 
 <!-- Template JS File -->
 <script src="{{ asset('js/funciones_personalizadas.js') }}"></script>
+<!-- multiselect -->
+{{-- <script src="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.js"></script> --}}
+{{-- <script src="{{ asset('js/multiselect.js') }}"></script> --}}
+{{-- <script src="{{ asset('https://unpkg.com/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('js/dselect.js') }}"></script> --}}
+
 <script src="{{ asset('js/selectDinamicos.js') }}"></script>
 <script src="{{ asset('web/js/stisla.js') }}"></script>
 <script src="{{ asset('web/js/scripts.js') }}"></script>
@@ -86,6 +99,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+<script src="js/formatomoneda.js"></script>
 
 <!-- Page level plugins -->
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
@@ -118,7 +132,7 @@
     jQuery(document).ready(function() {
         jQuery('#country').change(function() {
             let cid = jQuery(this).val();
-            jQuery('#city').html('<option value="">Select City</option>')
+            //jQuery('#city').html('<option value="">Select City</option>')
             jQuery.ajax({
                 url: '/getState',
                 type: 'post',
@@ -130,5 +144,20 @@
         });
     });
 </script>
-
+<script>
+    jQuery(document).ready(function() {
+        jQuery('#country2').change(function() {
+            let cid2 = jQuery(this).val();
+            //jQuery('#city').html('<option value="">Select City</option>')
+            jQuery.ajax({
+                url: '/getState2',
+                type: 'post',
+                data: 'cid=' + cid2 + '&_token={{ csrf_token() }}',
+                success: function(result) {
+                    jQuery('#state2').html(result)
+                }
+            });
+        });
+    });
+</script>
 </html>

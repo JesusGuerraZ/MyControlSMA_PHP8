@@ -23,6 +23,7 @@ class CreateOserviciosTable extends Migration
             $table->date('fec_cita_oservicio');
             $table->string('pdf_oservicio');
             $table->string('est_oservicio');
+            $table->integer('val_oservicio');
 
             $table->timestamps();
         });

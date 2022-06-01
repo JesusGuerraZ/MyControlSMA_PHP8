@@ -12,43 +12,38 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
-
-                            @can('crear-auditoria')
-                                <a class="btn btn-warning" href="{{ route('auditor.create') }}">Nuevo</a>
-                            @endcan
                             <div class="table-responsive"><br>
                                 <table class="table table-striped mt-2" id="dataTable">
                                     <thead style="background-color:#575756">
                                         <th style="display: none;">ID</th>
-                                        <th style="color:#fff;">Servicio</th>
-                                        <th style="color:#fff;">Factura id</th>
-                                        <th style="color:#fff;">Aprobada</th>
-                                        <th style="color:#fff;">Fec. de aprobacion</th>
-                                        <th style="color:#fff;">Observaciones</th>
+                                        <th style="color:#fff;">Número de orden</th>
+                                        <th style="color:#fff;">Prestador</th>
+                                        <th style="color:#fff;">PDF Ord. Atencion</th>
+                                        <th style="color:#fff;">PDF Facturacion</th>
                                         <th style="color:#fff;">Acciones</th>
                                     </thead>
                                     <tbody>
-                                        @foreach ($auditores as $auditors)
+                                        @foreach ($datos as $list)
                                             <tr>
-                                                <td style="display: none;">{{ $auditors->id }}</td>
-                                                <td>{{ $auditors->id_oservicio }}</td>
-                                                <td>{{ $auditors->id_facturacion }}</td>
-                                                <td>{{ $auditors->aprobada_auditoria }}</td>
-                                                <td>{{ $auditors->fec_apr_auditoria }}</td>
-                                                <td>{{ $auditors->obs_auditoria }}</td>
+                                                <td style="display: none;">{{ $list->num_oservicio }}</td>
+                                                <td>{{ $list->id }}</td>
+                                                <td>{{ $list->ident_prestador }}</td>
+                                                <td><a href="{{ asset('/storage/pdf_oservicio/' . $list->pdf_oservicio) }}"
+                                                        target="_blank">{{ $list->pdf_oservicio }}</td>
+                                                <td><a href="{{ asset('/storage/pdf_facturacion/' . $list->pdf_facturacion) }}"
+                                                        target="_blank">{{ $list->pdf_facturacion }}</td>
+                                                {{-- <td>{{ $list->obs_auditoria }}</td> --}}
                                                 <td>
-                                                    <form action="{{ route('auditor.destroy', $auditors->id) }}"
+                                                    <form action="{{ route('auditor.destroy', $list->id) }}"
                                                         method="POST">
-                                                        @can('editar-auditoria')
-                                                            <a class="btn btn-info"
-                                                                href="{{ route('auditor.edit', $auditors->id) }}">Editar</a>
+                                                        @can('crear-auditoria')
+                                                            <a class="btn btn-warning"
+                                                                href="{{ route('oservicioPDF.aprobado', $list->num_oservicio) }}">Aprobado</a>
                                                         @endcan
-
                                                         @csrf
                                                         @method('DELETE')
                                                         @can('borrar-auditoria')
-                                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                                            <button type="submit" class="btn btn-danger">Desaprobado</button>
                                                         @endcan
                                                     </form>
                                                 </td>

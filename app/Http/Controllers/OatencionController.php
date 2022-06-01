@@ -23,10 +23,10 @@ class OatencionController extends Controller
      */
     public function index()
     {
-         //Con paginación
-         $oatenciones = oatencion::all();
-         return view('oatencion.index',compact('oatenciones'));
-         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $oatenciones->links() !!}
+        //Con paginación
+        $oatenciones = oatencion::all();
+        return view('oatencion.index', compact('oatenciones'));
+        //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $oatenciones->links() !!}
     }
 
     /**
@@ -62,6 +62,10 @@ class OatencionController extends Controller
         $nom_pdf = $num_oa . '_' . $pdfName;
         $input['pdf_oatencion'] = $nom_pdf;
 
+        //variables para actualizar el estado de la orden de servicio
+        $estado_oservicio = $request->input('est_oatencion');
+        $num_orden = $request->input('id_oservicio');
+
         request()->validate([
             'id_oservicio' => 'required',
             'fec_oatencion' => 'required',
@@ -72,14 +76,18 @@ class OatencionController extends Controller
         ]);
 
         if ($request->hasFile('pdf_oatencion') &&  $extension == 'pdf') {
-
             request()->file('pdf_oatencion')->storeAs('public/PDF_oatencion', $nom_pdf);
-
-
             //dd($input['pdf_oservicio']);
             //dd($orden_servicio);
         } else {
             dd('No es un PDF');
+        }
+        //actualizamos el estado de la orden de servicio('atendida') siempre y cuando la orden no sea anulada
+        if ($estado_oservicio == 'Orden anulada') {
+            //hay que agregar un mensage para cuando si sea anulada
+            
+        } else {
+            oservicio::where('num_oservicio', $num_orden)->update(['est_oservicio' => 'atendida']);
         }
 
 
@@ -108,7 +116,7 @@ class OatencionController extends Controller
      */
     public function edit(oatencion $oatencion)
     {
-        return view('oatencion.editar',compact('oatencion'));
+        return view('oatencion.editar', compact('oatencion'));
     }
 
     /**
@@ -120,7 +128,7 @@ class OatencionController extends Controller
      */
     public function update(Request $request, oatencion $oatencion)
     {
-         request()->validate([
+        request()->validate([
             'id_oservicio' => 'required',
             'fec_oatencion' => 'required',
             'num_oatencion' => 'required',
