@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="obj_contrato	">Objeto</label>
+                                            <label for="obj_contrato">Objeto</label>
                                             <input type="text" name="obj_contrato" class="form-control" value="{{ $contrato->obj_contrato }}">
                                         </div>
                                     </div>
@@ -138,6 +138,16 @@
                                         <div class="form-group">
                                             <label for="obli_contrato">Obligaciones</label>
                                             <input type="text" name="obli_contrato" class="form-control" value="{{ $contrato->obli_contrato}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                        <div class="form-group">
+                                            <label for="natu_contrato">Naturaleza del prestador</label>
+                                            <select type="text" class="form-control" name="natu_contrato"
+                                                id="natu_contrato">
+                                                <option value="Persona natural">Persona natural</option>
+                                                <option value="Juridica">Juridica</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-2">

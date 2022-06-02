@@ -31,7 +31,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-4">
                                         <div class="form-group">
                                             <label for="ced_funcionario">Cédula</label>
-                                            <input type="text" name="ced_funcionario" class="form-control">
+                                            <input type="number" name="ced_funcionario" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4">
@@ -46,14 +46,14 @@
                                     <div class="col-xs-12 col-sm-12 col-md-4">
                                         <div class="form-group">
                                             <label for="tel_funcionario">Teléfono</label>
-                                            <input type="text" name="tel_funcionario" class="form-control">
+                                            <input type="number" name="tel_funcionario" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-4">
                                         <div class="form-group">
                                             <label for="cel_funcionario">Celular</label>
-                                            <input type="text" name="cel_funcionario" class="form-control">
+                                            <input type="number" name="cel_funcionario" class="form-control">
                                         </div>
                                     </div>
 

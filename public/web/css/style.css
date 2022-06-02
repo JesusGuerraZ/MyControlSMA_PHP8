@@ -4426,5 +4426,5 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     overflow-y: scroll;
     padding: 5px;
     border-radius: 5px;
-    box-shadow: 0 2px 6px rgb(170, 83, 16);
+    box-shadow: 0 2px 6px rgba(170, 83, 16, 0);
 }

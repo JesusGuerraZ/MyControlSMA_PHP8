@@ -41,17 +41,17 @@ class FacturadorController extends Controller
         $consulta = oservicio::where('est_oservicio', '=', 'atendida')->get();
         $orden_servicio = $consulta->pluck('num_oservicio', 'num_oservicio')->all();
         $numOS = oservicio::where('est_oservicio', '=', 'atendida')->get();
-        $prestador_nom = oservicio::where('est_oservicio', 'atendida')->get();
+        $prestador_nom = oservicio::select('ident_prestador')->groupBy('ident_prestador')->get();
         return view('facturador.crear', compact('orden_servicio', 'numOS', 'prestador_nom'));
     }
 
     public function getState2(Request $request)
     {
         $cid2 = $request->post('cid');
-        $state = DB::table('oservicios')->where('id', $cid2)->get();
-        /* $html = '<label><input type="checkbox" /></label>'; */
+        $state = DB::table('oservicios')->where('ident_prestador', $cid2)->orderBy('num_oservicio', 'desc')->get();
+        $html = '';
         foreach ($state as $list) {
-            $html = '<input type="checkbox" value="' . $list->num_oservicio . '"/>  ' . $list->num_oservicio . '</br>';
+            $html .= '<input name="id_oservicio[]" type="checkbox" value="' . $list->num_oservicio . '"/>  ' . $list->num_oservicio . '</br>';
         }
         echo $html;
     }
@@ -67,14 +67,15 @@ class FacturadorController extends Controller
         //relacionar campos de distintos modelos y tablas
         $input = $request->all();
 
-        $datoTest = $request->input('id_oservicio');
-        dd($datoTest);
+        $id_cheked = $request->input('id_oservicio');
+        $id_OScheked = implode(',', $id_cheked);
         //Variables para guardar e identificar eñ pdf;
         $extension = $request->file('pdf_facturacion')->getClientOriginalExtension();
         $pdfName = $request->file('pdf_facturacion')->getClientOriginalName();
-        $id_os = $request->input('id_oservicio');
+        $id_os = $id_OScheked;
         $nom_pdf = $id_os . '_' . $pdfName;
         $input['pdf_facturacion'] = $nom_pdf;
+        $input['id_oservicio'] = $id_OScheked;
 
         request()->validate([
             'id_oservicio' => 'required',
@@ -101,10 +102,6 @@ class FacturadorController extends Controller
 
         return redirect()->route('facturador.index');
     }
-
-
-
-
     /**
      * Display the specified resource.
      *

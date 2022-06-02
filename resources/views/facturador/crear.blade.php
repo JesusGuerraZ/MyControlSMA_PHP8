@@ -35,8 +35,8 @@
                                             {{-- {!! Form::select('ident_prestador', $prestador_nom, [], ['class' => 'form-control', 'id' => 'country2']) !!} --}}
                                             <select id="country2" class="form-control" name="nom_beneficiario">
                                                 @foreach ($prestador_nom as $list)
-                                                    <option value="{{ $list->id }}">
-                                                        {{ $list->ident_prestador.' '.$list->id }}
+                                                    <option value="{{ $list->ident_prestador }}">
+                                                        {{ $list->ident_prestador}}
                                                     </option>
                                                 @endforeach
                                             </select>

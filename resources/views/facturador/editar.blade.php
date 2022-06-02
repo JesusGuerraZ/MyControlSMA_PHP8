@@ -33,13 +33,13 @@
                                     <div class="col-xs-6 col-sm-6 col-md-2">
                                         <div class="form-group">
                                             <label for="">Numero de orden</label>
-                                            <input type="number" name="num_oservicio" class="form-control"  value="{{ $facturador->id_oservicio }}">
+                                            <input type="number" name="id_oservicio" class="form-control"  value="{{ $facturador->id_oservicio }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label for="valor_factura">Valor de factura</label>
-                                            <input type="number" name="valor_factura" class="form-control" value="{{ $facturador->valor_factura }}">
+                                            <input type="text" name="valor_factura" class="form-control" value="{{ $facturador->valor_factura }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-3">

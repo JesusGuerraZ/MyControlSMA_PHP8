@@ -32,8 +32,7 @@ class AuditorController extends Controller
         $auditores = auditor::all();
         $oservicios = oservicio::all();
         $datos = DB::select("SELECT OS.id, OS.num_oservicio, OS.ident_prestador, pdf_oservicio, pdf_facturacion FROM oservicios OS, facturadors FA WHERE OS.num_oservicio = FA.id_oservicio;");
-        //$array = array_merge($oservicios, $facturadores);
-        //dd($pdf_servicio);
+        dd($datos);
 
         return view('auditor.index', compact('auditores', 'oservicios', 'facturadores', 'datos'));
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $blogs->links() !!}
@@ -71,9 +70,9 @@ class AuditorController extends Controller
 
         //usamos storage::copy le damos la ruta origen y la ruta destino en este respectivo orden
         //if (file_exists($pdfOservicio_path) && file_exists($pdfFacturacion_path)) {
-            Storage::copy($pdfOservicio_path, $pdfAprobacionServicio_path);
-            Storage::copy($pdfFacturacion_path, $pdfAprobacionFacturacion_path);
-            return redirect()->route('auditor.index');
+        Storage::copy($pdfOservicio_path, $pdfAprobacionServicio_path);
+        Storage::copy($pdfFacturacion_path, $pdfAprobacionFacturacion_path);
+        return redirect()->route('auditor.index');
         //}
 
     }

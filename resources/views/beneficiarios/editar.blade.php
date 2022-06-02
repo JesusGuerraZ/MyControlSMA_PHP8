@@ -89,7 +89,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-2">
                                             <div class="form-group">
                                                 <label for="edad_beneficiario">Edad</label>
-                                                <input type="text" name="tel_beneficiario" class="form-control" value="{{ $beneficiario->edad_beneficiario }}">
+                                                <input type="text" name="edad_beneficiario" class="form-control" value="{{ $beneficiario->edad_beneficiario }}">
                                             </div>
                                         </div>
 
