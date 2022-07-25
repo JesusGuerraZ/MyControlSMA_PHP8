@@ -18,9 +18,9 @@ class CreateFuncionariosTable extends Migration
 
             $table->integer('ced_funcionario');
             $table->string('nom_ape_funcionario', 225);
-            $table->bigInteger('tel_funcionario');
-            $table->bigInteger('cel_funcionario');
-            $table->varchar('nom_regional');
+            $table->biginteger('tel_funcionario');
+            $table->biginteger('cel_funcionario');
+            $table->string('nom_regional');
 
             $table->timestamps();
         });
